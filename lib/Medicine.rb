@@ -1,6 +1,6 @@
 class Medication
 
-  attr_accessor :name, :url, :uses, :sideeffects, :precautions, :interations, :overdose, :images 
+  attr_accessor :name, :url, :uses, :sideeffects, :precautions, :interations, :overdose 
 
 @@all = []
 
