@@ -13,20 +13,10 @@ class MedicationScraper
       drug = Medication.new
       drug.name = medication.css("a").text
       drug.url = medication.css("a").attr('href').value
+      end
+    end
+    def self.scrape_medication_specifications(medication)
+      html = open(https://www.webmd.com)
     end
 
-
   end
-  #def initialize
-  #    url = "https://www.webmd.com/drugs/2/alpha/A/"
-  #    aa_url = url + "aa"
-  #    ab_url = url + "ab"
-  #end
-
-  #def get_page
-  #    page = Nokogiri::HTML(open (@aa_url))
-  #end
-
-  #def get_drug
-  #    get_page.css(".drug-list-container")
-#end
