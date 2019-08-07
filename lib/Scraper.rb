@@ -1,16 +1,32 @@
+require 'open-uri'
+require 'nokogiri'
+
 class MedicationScraper
+  def self.scrape_medication_list
 
-  def initialize
-      @base_url = "https://www.webmd.com/drugs/2/alpha/A/"
-      @aa_url = @base_url + "aa"
-      @ab_url = @base_url + "ab"
+    html = open("https://www.webmd.com/drugs/2/alpha/A/")
+    doc = Nokogiri::HTML(html)
+
+    medication_list = doc.css("li")
+
+    medication_list.drop(2).each do |medication|
+      drug = Medication.new
+      drug.name = medication.css("a").text
+      drug.url = medication.css("a").attr('href').value
+    end
+
+
   end
+  #def initialize
+  #    url = "https://www.webmd.com/drugs/2/alpha/A/"
+  #    aa_url = url + "aa"
+  #    ab_url = url + "ab"
+  #end
 
-  def scrape
-      aa_page = open(@aa_url)
-      aa_html = aa_page.read
-      ab_page = open(@ab_url)
-      ab_html = ab_page.read
-  end
+  #def get_page
+  #    page = Nokogiri::HTML(open (@aa_url))
+  #end
 
-end
+  #def get_drug
+  #    get_page.css(".drug-list-container")
+#end
